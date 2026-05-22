@@ -19,11 +19,13 @@ powershell.exe -NoProfile -Command "Clear-RecycleBin -Confirm:$false -ErrorActio
 
 :: 2. Clean User Temp
 echo [2/3] Cleaning User Temp...
-del /f /s /q "%temp%\*.*"
+del /f /s /q "%temp%\*"
+for /d %%i in ("%temp%\*") do rmdir /s /q "%%i"
 
 :: 3. Clean Windows System Temp
 echo [3/3] Cleaning System Temp...
-del /f /s /q "C:\Windows\Temp\*.*"
+del /f /s /q "C:\Windows\Temp\*"
+for /d %%i in ("C:\Windows\Temp\*") do rmdir /s /q "%%i"
 
 echo ---------------------------------------
 echo Cleanup Finished!
